@@ -48,6 +48,7 @@ public class LoanApplications {
 	@Min(value = 0)
 	private int NoOfDependents;
 	private LocalDate ApplicationDate;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int LoanPlanId;
 
 	@NotNull

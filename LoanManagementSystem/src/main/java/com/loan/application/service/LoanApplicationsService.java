@@ -23,7 +23,7 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
 		int requestCount = getApplicationsByLoanPlanId(loanPlanId).size();
 		int rejectedCount = rejectedLoanApplicationCount(application);
 		
-		if(rejectedCount>=3)
+		/*if(rejectedCount>=3)
 		{
 			throw new MaximumRequestLimitReachedException("Maximum request limit reached as rejected count has gone to: ", rejectedCount);
 		}
@@ -31,7 +31,7 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
 		if (requestCount > 2) {
             throw new MaximumRequestLimitReachedException("Maximum request limit reached for customer: " + appName, requestCount);
         }
-        
+        */
         return loanApplicationsRepository.save(application);
     }
 	
@@ -54,7 +54,20 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
 	public List<LoanApplications> getAllNewLoanApplications() {
 		return loanApplicationsRepository.findByApplicationStatus("New");
 	}
-
+	@Override
+	public List<LoanApplications> getAllApprovedLoanApplications() {
+		return loanApplicationsRepository.findByApplicationStatus("Approved");
+	}
+	
+	@Override
+	public List<LoanApplications> getAllRejectedLoanApplications() {
+		return loanApplicationsRepository.findByApplicationStatus("Rejected");
+	}
+	@Override
+	public List<LoanApplications> getAllLoanApplications() {
+		return loanApplicationsRepository.findAll();
+	}
+	
 	@Override
 	public LoanApplications getLoanApplicationById(int id) {
 		return loanApplicationsRepository.findById(id)
