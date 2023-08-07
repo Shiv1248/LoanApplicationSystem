@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<div class="box">
+  <div>
+  <h2>Fill out this application form!</h2>
+  </div>
+  <form (ngSubmit)="submit()">
+    <mat-form-field>
+      <mat-label>Applicant Name</mat-label>
+      <input matInput [(ngModel)]="app.applicantName" type="text" name="applicantName" placeholder="Enter Name" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input matInput [(ngModel)]="app.applicantPhone" type="number" name="applicantPhone" placeholder="Enter Phone Number" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email Address</mat-label>
+      <input matInput [(ngModel)]="app.applicantEmail" type="text" name="applicantEmail" placeholder="Enter Email Address" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Profession</mat-label>
+      <mat-select name="prof" [(ngModel)]="app.applicantProfession" id="prof">
+        <mat-option *ngFor="let profs of prof" [value]="profs.value" required>
+          {{profs.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input matInput [(ngModel)]="app.applicantAddress" type="text" name="applicantAddress" placeholder="Enter Address" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Today's Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="app.applicationDate" name="applicationDate" placeholder="Select a Date" required>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Applicant PAN</mat-label>
+      <input matInput [(ngModel)]="app.applicantPAN" type="text" name="applicantPAN" placeholder="PAN" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Monthly Income</mat-label>
+      <input matInput [(ngModel)]="app.monthlyIncome" type="number" name="monthlyIncome" placeholder="Monthly Income" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Number of Dependents</mat-label>
+      <input matInput [(ngModel)]="app.noOfDependents" type="number" name="noOfDependents" placeholder="Number of Dependents" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Documents</mat-label>
+      <mat-select [(ngModel)]="app.loanDocs" (click)="getDocs()" name="documentType">
+        <mat-option *ngFor="let docs of doc" placeholder="Documents" [value]="docs.documentType" >
+          {{docs.documentType}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Application Status</mat-label>
+      <input matInput [(ngModel)]="app.applicationStatus" type="text" name="applicationStatus" placeholder="New/Approved/Rejected" required>
+    </mat-form-field>
+      <input type="file" class="file-upload" onchange="console.log(event.target.files)" >
+      <div style="text-align: center;">
+        <button class="submit" style="color: white;" mat-button >Submit</button>
+        </div>
+  </form>
+</div>

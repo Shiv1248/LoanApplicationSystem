@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+
+<div class="box">
+  <h1 class="welcome">Customer Login</h1>
+      <form [formGroup]="firstFormGroup" (ngSubmit)="login()">
+       
+        <div>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput name="email" placeholder="Enter Email" formControlName="email" required>
+          </mat-form-field>
+        </div>
+        
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" name="password" formControlName="password" required>
+            <button mat-icon-button matSuffix (click)="hide = false" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="cent">
+          <button type="submit" class="btn clr btn-primary" >Login</button>
+        </div>
+    
+    </form>
+    <div class="sig">
+      <p style="font-size: larger; margin-bottom: 25px; text-align: center;">Don't have an account yet?</p>
+      <div style="text-align: center;">
+        <button type="button" (click)="signup('signup')" class="btn clr spc btn-primary">Sign Up</button>
+        </div>
+    </div>
+</div>

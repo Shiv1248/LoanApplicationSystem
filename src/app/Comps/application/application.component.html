@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="box" >
+    <h1>Application</h1>
+      <div>
+        <table>
+            <tr>
+                <td>ApplicationID</td>
+                <td>:</td>
+                <td>{{appId}}</td>
+                <td>LoanPlanID</td>
+                <td>:</td>
+                <td>{{loanApp.loanPlanId}}</td>
+            </tr>
+            <tr>
+                <td>Applicant Name</td>
+                <td>:</td>
+                <td>{{loanApp.applicantName}}</td>
+                <td>Phone Number</td>
+                <td>:</td>
+                <td>{{loanApp.applicantPhone}}</td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td>:</td>
+                <td>{{loanApp.applicantEmail}}</td>
+                <td>Address</td>
+                <td>:</td>
+                <td>{{loanApp.applicantAddress}}</td>
+            </tr>
+            <tr>
+                <td>PAN</td>
+                <td>:</td>
+                <td>{{loanApp.applicantPAN}}</td>
+                <td>Monthly Income</td>
+                <td>:</td>
+                <td>{{loanApp.monthlyIncome}}</td>
+            </tr>
+            <tr>
+                <td>Profession</td>
+                <td>:</td>
+                <td>{{loanApp.applicantProfession}}</td>
+                <td>Number of Dependents</td>
+                <td>:</td>
+                <td>{{loanApp.noOfDependents}}</td>
+            </tr>
+            <tr>
+                <td>Apply Date</td>
+                <td>:</td>
+                <td>{{loanApp.applicationDate}}</td>
+                <td>Review Date</td>
+                <td>:</td>
+                <td>{{loanApp.applicationReviewedOn}}</td>
+            </tr>
+            <tr>
+                <td>Application Status</td>
+                <td>:</td>
+                <td>{{loanApp.applicationStatus}}</td>
+            </tr>
+        </table>
+      </div>
+      <div class="cent">
+        <button type="button" class="btn clr btn-primary" (click)="back()">Back</button>
+      </div>
+      

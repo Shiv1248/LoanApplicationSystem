@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="box">
+  <h1 class="welcome">Bank Manager Login</h1>
+  <form [formGroup]="firstFormGroup" (ngSubmit)="login()">
+    
+    <div>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input name="email" matInput placeholder="Enter Email" formControlName="email" required>
+      </mat-form-field>
+    </div>
+    
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input [type]="hide ? 'password' : 'text'" name="password" matInput placeholder="Enter Password" formControlName="password" required>
+        <button mat-icon-button matSuffix (click)="hide = false" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="cent">
+      <button type="submit" class="btn clr btn-primary">Login</button>
+    </div>
+
+</form>
+    
+</div>

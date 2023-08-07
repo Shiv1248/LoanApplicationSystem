@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+  </style>
+<body>
+  <header class="clr">
+  <h2 class="heading">MyApplications</h2>
+</header>
+<div>
+  <button class="add" (click)="add('form')">
+    <strong class="plus">+</strong>
+  </button>
+</div>
+<div class="box" *ngFor="let loanApp of loanApplications"> 
+  <div class="card crd" style="width: 20rem;" >
+  <div class="card-body">
+    <h2 class="card-title card-head">Application {{loanApp.applicationId}}</h2>
+    <div>
+      <table class="mid">
+        <tr>
+          <td>ApplicationID</td>
+          <td>:</td>
+          <td>{{loanApp.applicationId}}</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td>:</td>
+          <td>{{loanApp.applicationStatus}}</td>
+        </tr>
+        <tr>
+          <td>LoanPlan ID</td>
+          <td class="date">:</td>
+          <td>{{loanApp.loanPlanId}}</td>
+      </tr>
+        </table><br>
+        <table>
+          <tr>
+              <td>Apply Date</td>
+              <td class="date">:</td>
+              <td>{{loanApp.applicationDate}}</td>
+          </tr>
+          
+      </table><br>
+      <button class="view" (click)="view(loanApp.applicationId)">View</button>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>

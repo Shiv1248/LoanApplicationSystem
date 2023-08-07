@@ -1,0 +1,13 @@
+mat-toolbar{
+    background-color:rgb(35, 0, 130) ;
+    color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:xx-large;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+  }
+a{
+  text-decoration: none;
+  color:white;
+}

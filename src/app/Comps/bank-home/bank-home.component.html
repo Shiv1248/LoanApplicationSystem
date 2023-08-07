@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+  </style>
+<body>
+  <header class="clr">
+  <h2 class="heading">Applications</h2>
+  
+</header> 
+
+<div class="reason">
+</div>
+<mat-tab-group #tabGroup>
+    <mat-tab label="New">
+      <div class="tbox">
+        <table class="table">
+        <tr>
+            <th>ApplicationID</th>
+            <th>LoanPlanID</th>
+            <th>Applicant Name</th>
+            <th>Phone</th>
+            <th>Profession</th>
+            <th>Income</th>
+            <th>Apply Date</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let loan of loanNew">
+            <td>{{loan.applicationId}}</td>
+            <td>{{loan.loanPlanId}}</td>
+            <td>{{loan.applicantName}}</td>
+            <td>{{loan.applicantPhone}}</td>
+            <td>{{loan.applicantProfession}}</td>
+            <td>{{loan.monthlyIncome}}</td>
+            <td>{{loan.applicationDate}}</td>
+            <td>
+              <div class="action">
+                <button class="view" (click)="view(loan.applicationId)">View</button>
+                <button class="approve" (click)="approve(loan.applicationId)">Approve</button>
+                <button class="reject" (click)="reject(loan.applicationId)">Reject</button>
+            </div>
+            </td>
+          </tr>
+          </table>
+        </div>  
+    </mat-tab>
+    <mat-tab label="Approved">
+        <div class="tbox">
+            <table class="table">
+            <tr>
+                <th>ApplicationID</th>
+                <th>LoanPlanID</th>
+                <th>Applicant Name</th>
+                <th>Phone</th>
+                <th>Profession</th>
+                <th>Income</th>
+                <th>Apply Date</th>
+                <th>Action</th>
+              </tr>
+              <tr *ngFor="let loan of loanApp">
+                <td>{{loan.applicationId}}</td>
+                <td>{{loan.loanPlanId}}</td>
+                <td>{{loan.applicantName}}</td>
+                <td>{{loan.applicantPhone}}</td>
+                <td>{{loan.applicantProfession}}</td>
+                <td>{{loan.monthlyIncome}}</td>
+                <td>{{loan.applicationDate}}</td>
+                <td>
+                  <div class="action">
+                    <button class="view" (click)="view(loan.applicationId)">View</button>
+                    <button class="approve" (click)="approve(loan.applicationId)">Approve</button>
+                    <button class="reject" (click)="reject(loan.applicationId)" (click)="tabGroup.selectedIndex=1">Reject</button>
+                </div>
+                </td>
+              </tr>
+              </table>
+            </div>  
+    </mat-tab>
+    <mat-tab label="Rejected">
+        <div class="tbox">
+            <table class="table">
+              <tr>
+                <th>ApplicationID</th>
+                <th>LoanPlanID</th>
+                <th>Applicant Name</th>
+                <th>Phone</th>
+                <th>Profession</th>
+                <th>Income</th>
+                <th>Apply Date</th>
+                <th>Action</th>
+              </tr>
+              <tr *ngFor="let loan of loanRej">
+                <td>{{loan.applicationId}}</td>
+                <td>{{loan.loanPlanId}}</td>
+                <td>{{loan.applicantName}}</td>
+                <td>{{loan.applicantPhone}}</td>
+                <td>{{loan.applicantProfession}}</td>
+                <td>{{loan.monthlyIncome}}</td>
+                <td>{{loan.applicationDate}}</td>
+                <td>
+                  <div class="action">
+                    <button class="view" (click)="view(loan.applicationId)">View</button>
+                    <button class="approve" (click)="approve(loan.applicationId)" (click)="tabGroup.selectedIndex=3">Approve</button>
+                    <button class="reject" (click)="reject(loan.applicationId)">Reject</button>
+                </div>
+                </td>
+              </tr>
+              </table>
+            </div>
+    </mat-tab>
+  </mat-tab-group><hr>
+  
+</body>
