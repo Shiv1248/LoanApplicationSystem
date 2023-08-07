@@ -1,7 +1,6 @@
 package com.loan.application.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.loan.application.entity.User;
 

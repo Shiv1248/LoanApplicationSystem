@@ -1,19 +1,13 @@
 package com.loan.application.service;
 
-import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,9 +28,6 @@ public class UserService implements InterUserService {
     private UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
-
-    @Autowired
-    private RoleService roleService;
     
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
@@ -47,11 +38,11 @@ public class UserService implements InterUserService {
     public void initRoleAndUser() {
 
         Role adminRole = new Role();
-        adminRole.setName("Admin");
+        adminRole.setName("Bank Manager");
         roleRepo.save(adminRole);
 
         Role userRole = new Role();
-        userRole.setName("User");
+        userRole.setName("Customer");
         roleRepo.save(userRole);
 
         User adminUser = new User();

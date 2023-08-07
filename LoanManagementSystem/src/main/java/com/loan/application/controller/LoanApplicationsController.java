@@ -30,6 +30,12 @@ public class LoanApplicationsController {
         this.loanApplicationService = loanApplicationService;
     }
 
+    @GetMapping("/loanapplication/{applicantEmail}")
+    public ResponseEntity<List<LoanApplications>> getLoanApplicationByEmail(@PathVariable String applicantEmail) {
+        List<LoanApplications> loan=loanApplicationService.getApplicationByEmail(applicantEmail);
+        return new ResponseEntity<List<LoanApplications>>(loan, HttpStatus.OK);
+    }
+
     @GetMapping("/loanapplications")
     public ResponseEntity<List<LoanApplications>> getAllLoanApplications() {
         List<LoanApplications> loan=loanApplicationService.getAllLoanApplications();

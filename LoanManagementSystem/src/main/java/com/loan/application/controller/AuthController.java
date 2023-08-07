@@ -2,8 +2,6 @@ package com.loan.application.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.loan.application.entity.JwtRequest;
 import com.loan.application.entity.JwtResponse;
 import com.loan.application.entity.User;
+import com.loan.application.repos.UserRepo;
 import com.loan.application.entity.Role;
 import com.loan.application.security.JwtHelper;
 import com.loan.application.service.CustomUserDetailsService;
@@ -48,17 +47,13 @@ public class AuthController {
     private RoleService roleService;
 
     @Autowired
+    private UserRepo userRepo;
+    
+    @Autowired
     private JwtHelper helper;
 
     @Autowired
-    private CustomUserDetailsService Custom;
-
-    private Logger logger = LoggerFactory.getLogger(AuthController.class);
-
-    // @PostConstruct
-    // public void initRoleAndUser(){
-    //     userService.initRoleAndUser();
-    // }
+    private CustomUserDetailsService custom;
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
@@ -79,9 +74,8 @@ public class AuthController {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
         try {
-            manager.authenticate(authentication);
-
-
+        	manager.authenticate(authentication);
+           
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(" Invalid Username or Password  !!");
         }
@@ -107,14 +101,23 @@ public class AuthController {
         return roleService.getAllRoles();
     }
 
-    @GetMapping("/role/{name}")
+    /*@GetMapping("/role/{name}")
     public Role getRoleByName(@PathVariable String name) {
         return roleService.findByName(name);
+    }
+    */
+    
+    @GetMapping("/role/{email}")
+    public String getRoleByEmail(@PathVariable String email)
+    {
+    	User u1=userRepo.findByEmail(email);
+    	Role role=roleService.findByName(u1.getName());
+    	return role.getName();
     }
 
     @GetMapping("/user/{email}")    
     public UserDetails getUserByEmail(@PathVariable String email) {
-        return Custom.loadUserByUsername(email);
+        return custom.loadUserByUsername(email);
     }
 
 }

@@ -17,4 +17,6 @@ List<LoanApplications> findAllByLoanPlanId(@Param("n") Integer loanPlanId);
 @Query("SELECT la FROM LoanApplications la WHERE la.ApplicationStatus = :string")
 List<LoanApplications> findByApplicationStatus(@Param("string") String applicationStatus);
 
+@Query("SELECT la FROM LoanApplications la WHERE la.ApplicantEmail=:string")
+List<LoanApplications> findByEmail(@Param("string")String applicantEmail);
 }

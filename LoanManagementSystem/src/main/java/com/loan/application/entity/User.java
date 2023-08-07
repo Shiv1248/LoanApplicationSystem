@@ -1,6 +1,7 @@
 package com.loan.application.entity;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
@@ -35,7 +37,7 @@ public class User implements UserDetails {
 	    private String password;
 
 	    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	    @JoinColumn(name = "role_id")
+	    @JoinColumn(name="role_id")
 	    private Collection<Role> roles;
 
 	    @Override

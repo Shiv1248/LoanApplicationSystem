@@ -18,26 +18,25 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
 	
 	@Override
 	public LoanApplications createLoanApplication(LoanApplications application) {
-		String appName= application.getApplicantName();
-		int loanPlanId=application.getLoanPlanId();
-		int requestCount = getApplicationsByLoanPlanId(loanPlanId).size();
+		String email= application.getApplicantEmail();
+		int requestCount = getApplicationByEmail(email).size();
 		int rejectedCount = rejectedLoanApplicationCount(application);
 		
-		/*if(rejectedCount>=3)
+		if(rejectedCount>=3)
 		{
 			throw new MaximumRequestLimitReachedException("Maximum request limit reached as rejected count has gone to: ", rejectedCount);
 		}
 		
 		if (requestCount > 2) {
-            throw new MaximumRequestLimitReachedException("Maximum request limit reached for customer: " + appName, requestCount);
+            throw new MaximumRequestLimitReachedException("Maximum request limit reached for customer: " + application.getApplicantName(), requestCount);
         }
-        */
+        
         return loanApplicationsRepository.save(application);
     }
 	
 	public int rejectedLoanApplicationCount(LoanApplications application) {
 		int count=0;
-		List<LoanApplications> loanplans=getApplicationsByLoanPlanId(application.getLoanPlanId());
+		List<LoanApplications> loanplans=getApplicationByEmail(application.getApplicantEmail());
 		for(int i=0;i<loanplans.size();i++)
 		{
 			if(loanplans.get(i).getApplicationStatus().equals("Rejected"))
@@ -50,6 +49,11 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
         return loanApplicationsRepository.findAllByLoanPlanId(loanPlanId);
 	}
 
+	@Override
+	public List<LoanApplications> getApplicationByEmail(String applicantEmail)
+	{
+		return loanApplicationsRepository.findByEmail(applicantEmail);
+	}
 	@Override
 	public List<LoanApplications> getAllNewLoanApplications() {
 		return loanApplicationsRepository.findByApplicationStatus("New");
@@ -78,7 +82,7 @@ public class LoanApplicationsService implements InterLoanApplicationsService{
 	public LoanApplications respondToLoanApplication(int loanApplicationId, String applicationStatus) {
 		LoanApplications loanApplication = loanApplicationsRepository.findById(loanApplicationId)
 		        .orElseThrow(() -> new ApplicationNotFoundException("Loan application not found."));
-
+		
 		    loanApplication.setApplicationStatus(applicationStatus);
 		    return loanApplicationsRepository.save(loanApplication);
 	}

@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table
+@SequenceGenerator(name="seq", initialValue=1001, allocationSize=100)
 public class LoanApplications {
 
 	@Id
@@ -48,7 +50,8 @@ public class LoanApplications {
 	@Min(value = 0)
 	private int NoOfDependents;
 	private LocalDate ApplicationDate;
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq")
 	private int LoanPlanId;
 
 	@NotNull

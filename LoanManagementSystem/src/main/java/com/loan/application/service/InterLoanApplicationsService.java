@@ -19,4 +19,6 @@ public interface InterLoanApplicationsService {
 	public List<LoanApplications> getAllRejectedLoanApplications();
 
 	public List<LoanApplications> getAllLoanApplications();
+	
+	public List<LoanApplications> getApplicationByEmail(String applicantEmail);
 }
